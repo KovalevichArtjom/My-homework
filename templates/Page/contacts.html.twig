@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('app_homepage') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contacts</li>
+        </ol>
+        <div class="jumbotron">
+            <h1 class="display-4">Обратная связь</h1>
+            <p class="lead">О возникших вопросах и пожелания напишите нам письмо, изложив суть.</p>
+            <hr class="my-4">
+            <p class="lead">Мы сделаем все, чтобы подобные вопросы больше Вас не беспокоили!
+                Чтобы учесть все ваши пожелания и сообщить о проделанной работе по устранению возникших вопросов,
+                нам нужно будет связаться с Вами. Сообщите, как Вас зовут и каким способом Вам удобнее ответить – нам
+                будет приятно известить Вас о произошедших изменениях.</p>
+        </div>
+    </nav>
+    <div class="container-drop">
+
+        <form class="form_add_product" method="post" action="{{ path('add_product') }}">
+            <p>Форма добавления Продуктов:</p>
+                    <div class="right_block">
+                    <textarea class="form-control" name="text" id="exampleFormControlTextarea1" rows="6" placeholder="Описание продукта" required></textarea>
+                    </div>
+                    <div class="mb-3" id="left_block">
+                        <p>Напишите наименование: </p>
+                            <input type="text" name="name_product" class="form-control" id="validationCustom01" placeholder="Наименование продукта" required>
+                        <p>Выберите категорию: </p>
+                        <select id="sources" class="custom-select sources" placeholder="Source Type" name="category_id">
+                            {% for value in db_category %}
+                                <option value="{{ value.id}}">{{ value.nameCategory}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+            <button class="btn btn-primary" type="submit">Добавить</button>
+        </form>
+
+        <div class="container-del">
+            <form class="form_del_product" method="post" action="{{ path('del_product') }}">
+                <p>Форма yдаление Продукта:</p>
+                <div class="mb-3" id="middle_block">
+                    <p>Выберите продук: </p>
+                    <select id="sources" class="custom-select sources" placeholder="Source Type" name="product_id">
+                        {% for value in db_product %}
+                            <option value="{{ value.id}}">{{ value.nameProduct}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button class="btn btn-primary" type="submit">Удалить</button>
+            </form>
+        </div>
+
+
+
+        <div class="b-container">
+            <a href="javascript:PopUpShow('#popup1')"> Написать</a>
+        </div>
+        <div class="b-popup" id="popup1">
+            <div class="b-popup-content">
+
+                <form class="needs-validation" novalidate method="post" action="{{ path('add_feedback') }}">
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label for="validationCustom01">Фамилия</label>
+                            <input type="text" name="Surname" class="form-control" id="validationCustom01" placeholder="Фамилия" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="validationCustom02">Имя</label>
+                            <input type="text" name="Firsname" class="form-control" id="validationCustom02" placeholder="Имя" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="validationCustomUsername">Электронная почта</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                </div>
+                                <input type="text" name="email"class="form-control" id="validationCustomUsername" placeholder="Электронная почта" aria-describedby="inputGroupPrepend" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Комментарий</label>
+                            <textarea class="form-control" name="question" id="exampleFormControlTextarea1" rows="12" required></textarea>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Отправить</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}

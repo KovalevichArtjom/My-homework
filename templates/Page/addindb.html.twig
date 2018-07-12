@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <div class="jumbotron">
+            <h1 class="display-4">{{ title }}</h1>
+            <p class="lead"></p>
+            <hr class="my-4">
+            <h2>Таблица продуктов</h2>
+        </div>
+    </nav>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Продукт</th>
+                <th scope="col">Описание</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for value in db_products_all %}
+            <tr>
+                <td>{{ value.id }}</td>
+                <td>{{ value.nameProduct }}</td>
+                <td>{{ value.text }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+{% endblock %}

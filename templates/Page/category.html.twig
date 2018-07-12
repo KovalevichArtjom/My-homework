@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('app_homepage') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ category_slug }}</li>
+        </ol>
+        <div class="jumbotron">
+            <h1 class="display-4">{{ category_slug }}</h1>
+            <p class="lead"></p>
+            <hr class="my-4">
+            <h2>Выберите интересующий продукт:</h2>
+        </div>
+    </nav>
+
+    <div class="container">
+
+                {% for value in db_product %}
+                    <a class="dropdown-item" href="{{ category_slug }}/{{ value.name_product }}">{{ value.name_product }}</a><br />
+                {% endfor %}
+
+    </div>
+{% endblock %}

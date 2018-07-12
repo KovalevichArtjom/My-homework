@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="jumbotron">
+        <h1 class="display-4">Добро пожаловать!</h1>
+        <p class="lead">Приложение было разработана для демонстрации навыков работы на PHP с framework Symfony 4.</p>
+        <hr class="my-4">
+        <p>Тестовое задание было выполнено Ковалевич Артёмом Юрьевичем</p>
+    </div>
+
+        <div class="container">
+                <div class="title">
+                <h4>Выберите категорию: </h4>
+                </div>
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        {% for value in db_category %}
+                            <a class="dropdown-item" href="{{ value.nameCategory }}">{{ value.nameCategory }}</a>
+                        {% endfor %}
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
